@@ -2,10 +2,24 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "kb-oms",
-      "image": "bhattkirtan/kb-oms",
-      "hostname": "kb-oms",
+      "name": "kb-oms-client",
+      "image": "bhattkirtan/kb-oms-client",
+      "hostname": "kb-oms-client",
       "essential": false,
+      "memory": 128
+    },
+    {
+      "name": "nginx",
+      "image": "bhattkirtan/kb-oms-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["kb-oms-client"],
       "memory": 128
     }
   ]

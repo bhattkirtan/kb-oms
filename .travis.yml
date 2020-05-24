@@ -3,17 +3,19 @@ services:
   - docker
 
 before_install:
-  - docker build -t bhattkirtan/react-kb-oms -f ./Dockerfile.dev ./
+  - docker build -t bhattkirtan/kb-oms-test -f ./Dockerfile.dev ./
 
 script:
-  - docker run -e CI=true bhattkirtan/react-kb-oms npm test -- --coverage
+  - docker run -e CI=true bhattkirtan/kb-oms-test npm test -- --coverage
 
 after_success:
-  - docker build -t bhattkirtan/kb-oms ./
+  - docker build -t bhattkirtan/kb-oms-client ./
+  - docker build -t bhattkirtan/kb-oms-nginx ./nginx
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push bhattkirtan/kb-oms
+  - docker push bhattkirtan/kb-oms-client
+  - docker push bhattkirtan/kb-oms-nginx
 
 deploy:
   edge: true
