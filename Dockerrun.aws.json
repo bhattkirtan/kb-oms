@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "kb-oms",
+      "image": "bhattkirtan/kb-oms",
+      "hostname": "kb-oms",
+      "essential": false,
+      "memory": 128
+    }
+  ]
+}
