@@ -3,10 +3,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t bhattkirtan/react-test -f ./Dockerfile ./
+  - docker build -t bhattkirtan/kb-oms-test -f ./Dockerfile ./
 
 script:
-  - docker run bhattkirtan/react-test npm test -- --coverage
+  - docker run bhattkirtan/kb-oms-test npm test -- --coverage
 
 after_success:
   - docker build -t bhattkirtan/kb-oms ./
