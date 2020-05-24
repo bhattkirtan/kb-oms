@@ -6,7 +6,7 @@
       "image": "bhattkirtan/kb-oms-client",
       "hostname": "kb-oms-client",
       "essential": false,
-      "memory": 128
+      "memory": 512
     },
     {
       "name": "nginx",
