@@ -14,3 +14,16 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push bhattkirtan/kb-oms
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: kb-oms
+  env: kbOms-env
+  bucket_name: elasticbeanstalk-us-east-1-794704998054
+  bucket_path: docker-kb-oms
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
