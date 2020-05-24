@@ -2,19 +2,19 @@ version: "3"
 services:
   nginx:
     depends_on:
-      - kb-oms
+      - kb-oms-client
     restart: always
     image: "nginx:latest"
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - "3050:80"
-  client:
+      - "80:80"
+  kb-oms-client:
     stdin_open: true
     build:
       dockerfile: Dockerfile.dev
-      context: ./kb-oms
+      context: ./
     volumes:
       - /app/node_modules
-      - ./kb-oms:/app
+      - ./:/app
